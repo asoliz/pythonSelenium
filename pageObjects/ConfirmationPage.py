@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 
+from pageObjects.AppointmentPage import AppointmentPage
 from pageObjects.LoginPage import LoginPage
 
 
@@ -58,4 +59,6 @@ class ConfirmationPage:
 
     # click Go To Homepage
     def clickGotoHomepageButton(self):
-        return self.driver.find_element(*ConfirmationPage.gotoHomepageLink).click()
+        self.driver.find_element(*ConfirmationPage.gotoHomepageLink).click()
+        appointmentPage = AppointmentPage(self.driver)
+        return appointmentPage

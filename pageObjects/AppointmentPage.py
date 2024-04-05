@@ -19,7 +19,7 @@ class AppointmentPage:
     # visit date calendar
     dateField = (By.ID, "txt_visit_date")
     # comment section
-    commentField = (By.ID, "txt_visit_date")
+    commentField = (By.ID, "txt_comment")
     # Book appointment button
     bookAppointment = (By.XPATH, "//button[@id='btn-book-appointment']")
 
@@ -52,3 +52,6 @@ class AppointmentPage:
 
     def clickBookAppointment(self):
         return self.driver.find_element(*AppointmentPage.bookAppointment).click()
+
+    def getCurrentUrl(self):
+        return self.driver.current_url

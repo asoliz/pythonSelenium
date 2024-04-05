@@ -64,13 +64,19 @@ class TestOne(BaseClass):
 
         # confirm Appointment Confirmation text and the information and dates entered
         assert facility in confirmationPage.getFacilityConfirmation()
+        print("validated", facility)
         assert "Yes" in confirmationPage.getReadmissionConfirmation()
+        print("validated Yes for Readmission")
         assert "Medicaid" in confirmationPage.getHealthcareProgramConfirmation()
+        print("validated Medicaid")
         assert d1 in confirmationPage.getVisitDateConfirmation()
+        print("validated ", d1, " as date")
         assert randomComment in confirmationPage.getCommentConfirmation()
+        print("validated '", randomComment, "' as the comment")
 
         # select on `Go to Homepage` button
         confirmationPage.clickGotoHomepageButton()
 
         # confirm navigation to homepage
+        assert "https://katalon-demo-cura.herokuapp.com/" in appointmentPage.getCurrentUrl()
 
