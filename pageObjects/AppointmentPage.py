@@ -23,18 +23,16 @@ class AppointmentPage:
     # Book appointment button
     bookAppointment = (By.XPATH, "//button[@id='btn-book-appointment']")
 
-    # declare all common functions
 
     # select the Facility
-    def getFacility(self, selection):
-        facility = Select(self.driver.find_element(*AppointmentPage.facilityDropdown))
-        # facility = self.driver.find_element(*AppointmentPage.facilityDropdown).click()
-        # select the "" option with visible text
-        return facility.select_by_visible_text(selection)
+    def defGetFacilityDropdown(self):
+        return self.driver.find_element(*AppointmentPage.facilityDropdown)
 
+    # click hospital readmission checkbox
     def clickHospitalReadmission(self):
         return self.driver.find_element(*AppointmentPage.readmissionCheck).click()
 
+    # click
     def selectMedicaidProgram(self):
         return self.driver.find_element(*AppointmentPage.medicaidProgram).click()
 
@@ -53,5 +51,3 @@ class AppointmentPage:
     def clickBookAppointment(self):
         return self.driver.find_element(*AppointmentPage.bookAppointment).click()
 
-    def getCurrentUrl(self):
-        return self.driver.current_url

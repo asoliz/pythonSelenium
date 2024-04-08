@@ -20,11 +20,17 @@ class TestOne(BaseClass):
 
         # perform the tests below
 
+        # validate url for each page
+        currentPage = self.getCurrentUrl()
+        print("Current URL: ",currentPage)
+
         # click on Make Appointment link and get navigated to Login Page
         homePage.clickMakeAppointmentLink()
         print("Navigating to Login Page")
 
         # enter an incorrect username and password and login
+        currentPage = self.getCurrentUrl()
+        print("Current URL: ",currentPage)
         loginPage.enterUsernameField("somethingRandom")
         loginPage.enterPasswordField("junkjunkjunk")
         loginPage.clickLoginButton()
@@ -32,7 +38,7 @@ class TestOne(BaseClass):
         # failed login message appears
         failedMessage = loginPage.getLoginMessage()
         assert "Login failed!" in failedMessage
-        print("asserted message is correct")
+        print("Validate message: ",failedMessage)
 
         # enter a valid username and password and click on login
         loginPage.enterUsernameField("John Doe")
@@ -40,8 +46,10 @@ class TestOne(BaseClass):
         loginPage.clickLoginButton()
 
         # select a facility from the dropdown menu
+        currentPage = self.getCurrentUrl()
+        print("Current URL: ",currentPage)
         facility = "Hongkong CURA Healthcare Center"
-        appointmentPage.getFacility(facility)
+        self.selectOptionByText(appointmentPage.defGetFacilityDropdown(), facility)
 
         # select checkbox `Apply for hospital readmission`
         appointmentPage.clickHospitalReadmission()
@@ -70,13 +78,15 @@ class TestOne(BaseClass):
         assert "Medicaid" in confirmationPage.getHealthcareProgramConfirmation()
         print("validated Medicaid")
         assert d1 in confirmationPage.getVisitDateConfirmation()
-        print("validated ", d1, " as date")
+        print("validated ",d1," as date")
         assert randomComment in confirmationPage.getCommentConfirmation()
-        print("validated '", randomComment, "' as the comment")
+        print("validated '",randomComment,"' as the comment")
 
         # select on `Go to Homepage` button
+        currentPage = self.getCurrentUrl()
+        print("Current URL: ",currentPage)
         confirmationPage.clickGotoHomepageButton()
 
         # confirm navigation to homepage
-        assert "https://katalon-demo-cura.herokuapp.com/" in appointmentPage.getCurrentUrl()
+        assert "https://katalon-demo-cura.herokuapp.com/" in currentPage
 

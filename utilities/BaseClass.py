@@ -4,6 +4,7 @@ import logging
 import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -20,3 +21,10 @@ class BaseClass:
         logger.addHandler(fileHandler)
         logger.setLevel(logging.DEBUG)
         return logger
+
+    def selectOptionByText(self, locator, text):
+        sel = Select(locator)
+        sel.select_by_visible_text(text)
+
+    def getCurrentUrl(self):
+        return self.driver.current_url

@@ -24,3 +24,4 @@ class HomePage:
         self.driver.find_element(*HomePage.makeAppointmentLink).click()
         loginPage = LoginPage(self.driver)
         return loginPage
+
